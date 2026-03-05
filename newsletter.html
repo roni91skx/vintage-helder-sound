@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vintage Helder Sound</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Josefin+Sans:wght@100;300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1C1810; --gold:#B8962E; --gold-pale:#D4AF5A;
+  --paper:#F8F4EE; --paper-dk:#EDE8DF; --rule:#C8BEA8;
+  --muted:#8A7E6A; --soft:#B0A490; --accent:#7A2B2B;
+}
+html{background:#DDD8CE}
+body{font-family:'EB Garamond',serif;display:flex;justify-content:center;padding:48px 20px;min-height:100vh}
+.w{max-width:660px;width:100%}
+
+/* HEADER */
+.hdr{background:var(--ink);padding:56px 52px 48px;text-align:center;position:relative}
+.hdr::after{content:'';position:absolute;bottom:0;left:52px;right:52px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.orn{font-family:'Josefin Sans',sans-serif;font-size:9px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);opacity:.65;margin-bottom:20px}
+.logo{font-family:'Playfair Display',serif;font-size:54px;font-weight:900;color:var(--paper);letter-spacing:-2px;line-height:1;margin-bottom:8px}
+.logo em{color:var(--gold);font-style:italic}
+.tagline{font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:6px;text-transform:uppercase;color:var(--muted);margin-bottom:28px}
+.edb{font-family:'Josefin Sans',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#4A4030;display:flex;align-items:center;justify-content:center;gap:16px}
+.edb::before,.edb::after{content:'';flex:1;max-width:70px;height:1px;background:#3A3020}
+
+/* HERO */
+.hero{background:var(--paper);padding:52px 52px 48px;border-left:1px solid var(--rule);border-right:1px solid var(--rule)}
+.hlbl{font-family:'Josefin Sans',sans-serif;font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:14px}
+.hlbl::after{content:'';flex:1;height:1px;background:var(--rule)}
+.hero h1{font-family:'Playfair Display',serif;font-size:40px;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:20px}
+.hero h1 em{color:var(--gold);font-style:italic}
+.hero p{font-size:19px;line-height:1.9;color:var(--muted);font-style:italic;max-width:500px}
+.hbdg{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:9px 22px;margin-top:28px;font-family:'Josefin Sans',sans-serif;font-size:9px;letter-spacing:5px;text-transform:uppercase}
+
+/* LIST HEADER */
+.lhdr{background:var(--paper);border-left:1px solid var(--rule);border-right:1px solid var(--rule);border-top:1px solid var(--rule);padding:36px 52px 0;display:flex;align-items:flex-end;gap:28px}
+.lhdr-n{font-family:'Playfair Display',serif;font-size:96px;font-weight:900;font-style:italic;color:var(--paper-dk);line-height:.85;flex-shrink:0;user-select:none}
+.lhdr-t{padding-bottom:12px}
+.lhdr-t h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;font-style:italic;color:var(--ink);margin-bottom:5px}
+.lhdr-t p{font-family:'Josefin Sans',sans-serif;font-size:9px;letter-spacing:4px;color:var(--soft);text-transform:uppercase}
+
+/* LIST */
+.list{background:var(--paper);border-left:1px solid var(--rule);border-right:1px solid var(--rule);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:0 52px}
+.enc{border-bottom:1px solid var(--rule);overflow:hidden}
+.enc:last-child{border-bottom:none}
+
+/* Row */
+.enc-row{display:grid;grid-template-columns:32px 1fr auto;align-items:center;gap:0 20px;padding:24px 0;cursor:pointer;transition:opacity .2s;user-select:none}
+.enc-row:hover .enc-name{color:var(--gold)}
+.enc-idx{font-family:'Playfair Display',serif;font-size:12px;font-style:italic;color:var(--soft);text-align:right;align-self:start;padding-top:6px}
+.enc-main-wrap{display:flex;align-items:center;gap:18px}
+.enc-thumb{width:64px;height:64px;flex-shrink:0;overflow:hidden;border:1px solid var(--rule);background:var(--paper-dk)}
+.enc-thumb img{width:100%;height:100%;object-fit:cover;object-position:center;filter:sepia(15%) contrast(1.05);transition:filter .3s}
+.enc:hover .enc-thumb img{filter:sepia(0%) contrast(1.1)}
+.enc-brand{font-family:'Josefin Sans',sans-serif;font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.enc-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--ink);margin-bottom:5px;transition:color .2s}
+.enc-desc{font-size:13px;line-height:1.6;color:var(--muted);font-style:italic}
+.enc-badge{display:inline-block;font-family:'Josefin Sans',sans-serif;font-size:7px;letter-spacing:3px;text-transform:uppercase;padding:3px 8px;border:1px solid;margin-left:8px;vertical-align:middle;position:relative;top:-2px}
+.badge-rare{color:var(--accent);border-color:var(--accent)}
+.badge-culte{color:var(--gold);border-color:var(--gold)}
+.badge-leg{color:var(--soft);border-color:var(--soft)}
+.enc-right{text-align:right;flex-shrink:0}
+.enc-price{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--ink)}
+.enc-punit{font-family:'Josefin Sans',sans-serif;font-size:7px;letter-spacing:3px;text-transform:uppercase;color:var(--soft);margin-bottom:6px}
+.enc-arr{color:var(--soft);font-size:10px;margin-top:10px;transition:transform .3s}
+.enc.open .enc-arr{transform:rotate(180deg)}
+
+/* FICHE */
+.fiche{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(0.4,0,0.2,1)}
+.fiche.open{max-height:2000px}
+.fiche-inner{border-top:1px solid var(--rule);padding:32px 0 36px}
+
+.fiche-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 32px;margin-bottom:28px}
+.fb-full{grid-column:1/-1}
+.fb-lbl{font-family:'Josefin Sans',sans-serif;font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--rule)}
+.fb-txt{font-size:14px;line-height:1.8;color:var(--ink)}
+.fb-conseil{font-size:13.5px;line-height:1.75;color:var(--muted);font-style:italic}
+
+/* Specs rows */
+.sr{display:flex;justify-content:space-between;align-items:baseline;padding:4px 0;border-bottom:1px dotted var(--rule);font-size:13px}
+.sk{color:var(--muted);font-family:'Josefin Sans',sans-serif;font-size:8px;letter-spacing:2px;text-transform:uppercase}
+.sv{color:var(--ink);font-weight:500}
+
+/* Test scores */
+.test-bars{margin-top:10px}
+.test-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.test-lbl{font-family:'Josefin Sans',sans-serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);width:72px;flex-shrink:0}
+.test-bar-bg{flex:1;height:4px;background:var(--paper-dk);border-radius:2px;overflow:hidden}
+.test-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-pale));border-radius:2px;transition:width .8s ease}
+.test-score{font-family:'Josefin Sans',sans-serif;font-size:8px;color:var(--soft);width:24px;text-align:right}
+
+/* Placement & cablage icons */
+.info-bloc{background:var(--paper-dk);padding:14px 16px;border-left:2px solid var(--gold);margin-bottom:0}
+.info-bloc-lbl{font-family:'Josefin Sans',sans-serif;font-size:7px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.info-bloc p{font-size:13px;line-height:1.7;color:var(--ink)}
+
+/* Vigilance */
+.vigil{background:#FBF6EE;border:1px solid #DDD0B0;padding:12px 16px}
+.vigil-lbl{font-family:'Josefin Sans',sans-serif;font-size:7px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.vigil p{font-size:13px;line-height:1.7;color:var(--ink)}
+
+/* QUOTE */
+.qb{background:var(--ink);padding:52px;text-align:center;position:relative}
+.qm{font-family:'Playfair Display',serif;font-size:80px;font-style:italic;color:var(--gold);opacity:.3;position:absolute;top:20px;left:52px;line-height:1}
+.qt{font-family:'Playfair Display',serif;font-size:20px;font-style:italic;color:var(--paper);line-height:1.7;max-width:480px;margin:0 auto 16px;position:relative}
+.qs{font-family:'Josefin Sans',sans-serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);opacity:.7}
+
+/* FOOTER */
+.ftr{background:var(--paper-dk);border:1px solid var(--rule);padding:40px 52px;text-align:center}
+.ftr-logo{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:var(--ink);letter-spacing:-1px;margin-bottom:12px}
+.ftr-txt{font-family:'Josefin Sans',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--soft);line-height:2;margin-bottom:20px}
+.ftr-links{display:flex;justify-content:center;gap:24px}
+.ftr-links a{font-family:'Josefin Sans',sans-serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s,color .2s}
+.ftr-links a:hover{color:var(--gold);border-bottom-color:var(--gold)}
+
+
+/* Bouton Acheter - Style de base */
+.buy-btn {
+  display: inline-block;
+  background: #0070BA;
+  color: #fff;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 3px;
+  margin-top: 8px;
+  transition: background 0.3s;
+}
+
+.buy-btn:hover {
+  background: #005a94;
+}
+
+
+@media(max-width:600px) {
+  .hdr-logo { font-size: 20px !important; }
+  .hdr-date { font-size: 9px !important; }
+  .hero-title { font-size: 28px !important; line-height: 1.2 !important; }
+  .hero-subtitle { font-size: 13px !important; }
+  .sec-title { font-size: 22px !important; }
+  .intro { font-size: 13px !important; line-height: 1.5 !important; }
+  
+  /* Layout enceinte complètement repensé pour mobile */
+  .enc {
+    flex-direction: column !important;
+    padding: 0 !important;
+  }
+  
+  .enc-left {
+    width: 100% !important;
+    padding: 20px 15px !important;
+    text-align: center !important;
+  }
+  
+  .enc-right {
+    width: 100% !important;
+    padding: 20px 15px !important;
+    text-align: center !important;
+    border-left: none !important;
+    border-top: 1px solid #d4c5a0 !important;
+  }
+  
+  .enc-img {
+    margin: 0 auto 15px auto !important;
+  }
+  
+  .enc-title {
+    font-size: 16px !important;
+  }
+  
+  .enc-desc {
+    font-size: 12px !important;
+  }
+  
+  .enc-price { 
+    font-size: 28px !important; 
+    margin-bottom: 5px !important;
+  }
+  
+  .enc-punit { 
+    font-size: 11px !important;
+    margin-bottom: 10px !important;
+  }
+  
+  /* BOUTON ACHETER - FIX MOBILE */
+  .buy-btn {
+    display: block !important;
+    width: 90% !important;
+    max-width: 200px !important;
+    margin: 15px auto !important;
+    padding: 12px 20px !important;
+    font-size: 13px !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+  
+  .enc-arr { 
+    font-size: 18px !important; 
+    margin-top: 15px !important;
+  }
+  
+  .fiche { 
+    padding: 20px 15px !important; 
+  }
+  
+  .fiche-title { 
+    font-size: 18px !important; 
+  }
+  
+  .fiche-section {
+    margin-bottom: 20px !important;
+  }
+  
+  .fiche-section h3 {
+    font-size: 14px !important;
+  }
+  
+  .fiche-section p, .fiche-section ul {
+    font-size: 13px !important;
+  }
+  
+  .qt { 
+    font-size: 14px !important; 
+    padding: 20px 15px !important; 
+    line-height: 1.6 !important;
+  }
+}
+
+</style>
+</head>
+<body>
+<div class="w">
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="orn">Revue des Grandes Enceintes</div>
+  <div class="logo">Vintage <em>Helder</em> Sound</div>
+  <div class="tagline">L'art de l'ecoute authentique</div>
+  <div class="edb">Edition N° 12 &nbsp;·&nbsp; Printemps 2025</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hlbl">Editorial</div>
+  <h1>Dix enceintes qui ont <em>change</em> l'ecoute</h1>
+  <p>De l'artisanat breton aux studios hollywoodiens, ces colonnes et bibliothèques ont façonné des generations d'auditeurs exigeants. Chaque fiche est le fruit d'ecoutes approfondies et d'un amour sincere pour la haute-fidelite analogique.</p>
+  <div class="hbdg">Lire les fiches completes</div>
+</div>
+
+<!-- LIST HEADER -->
+<div class="lhdr">
+  <div class="lhdr-n">10</div>
+  <div class="lhdr-t">
+    <h2>Enceintes de legende</h2>
+    <p>Selection Vintage Sound · Printemps 2025</p>
+  </div>
+</div>
+
+<!-- LIST -->
+<div class="list">
+
+  <!-- 01 CABASSE SAMPAN LOURD M11 -->
+  <div class="enc" data-id="enc1" onclick="tog(this)">
+    <div class="enc-row">
+      <div class="enc-idx">01</div>
+      <div class="enc-main-wrap">
+        <div class="enc-thumb"><img src="data:image/jpeg;base64,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" alt="Cabasse Sampan M11"></div>
+        <div class="enc-txt">
+          <div class="enc-brand">Cabasse <span class="enc-badge badge-rare">Rare</span></div>
+          <div class="enc-name">Sampan Lourd M11</div>
+          <div class="enc-desc">Colonne emblematique des annees 70, chaleur et coherence a l'etat pur.</div>
+        </div>
+      </div>
+      <div class="enc-right">
+        <div class="enc-price">1 €</div>
+        <div class="enc-punit">la fiche</div>
+        <a href="#" onclick="acheter(event, 'enc1')" class="buy-btn">Acheter</a>
+        <div class="enc-arr">▼</div>
+      </div>
+    </div>
+    <div class="fiche">
+      <div class="fiche-inner">
+        <div class="fiche-grid">
+          <div class="fb-full"><div class="fb-lbl">Histoire &amp; Contexte</div>
+          <p class="fb-txt">Le Sampan Lourd M11 est l'une des creations les plus abouties de Cabasse dans les annees 70. Fruit du savoir-faire breton, il se distingue par son enceinte close a charge acoustique propriete Cabasse, garantissant une extension dans le grave d'une rectitude remarquable. Rare sur le marche de l'occasion, il est recherche par les connaisseurs pour sa coherence tonale hors du commun.</p></div>
+
+          <div><div class="fb-lbl">Caracteristiques</div>
+            <div class="sr"><span class="sk">Type</span><span class="sv">Colonne 2 voies</span></div>
+            <div class="sr"><span class="sk">Sensibilite</span><span class="sv">90 dB / 1W / 1m</span></div>
+            <div class="sr"><span class="sk">Impedance</span><span class="sv">8 Ohms</span></div>
+            <div class="sr"><span class="sk">Frequences</span><span class="sv">45 Hz – 20 kHz</span></div>
+            <div class="sr"><span class="sk">Puissance</span><span class="sv">30 – 150 W</span></div>
+          </div>
+
+          <div><div class="fb-lbl">Amplification</div>
+            <p class="fb-conseil">Amplificateur de 40 a 120 W sous 8 Ohms. Elle s'epanouit avec des integres chaleureux (Marantz, Sansui). Eviter les amplificateurs trop analytiques qui peuvent accentuer le medium nasal.</p></div>
+
+          <div class="fb-full"><div class="fb-lbl">Tests &amp; Impressions d'ecoute</div>
+            <div class="test-bars">
+              <div class="test-row"><span class="test-lbl">Graves</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:82%"></div></div><span class="test-score">8.2</span></div>
+              <div class="test-row"><span class="test-lbl">Mediums</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:90%"></div></div><span class="test-score">9.0</span></div>
+              <div class="test-row"><span class="test-lbl">Aigus</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:78%"></div></div><span class="test-score">7.8</span></div>
+              <div class="test-row"><span class="test-lbl">Scene sonore</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:85%"></div></div><span class="test-score">8.5</span></div>
+              <div class="test-row"><span class="test-lbl">Dynamique</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:80%"></div></div><span class="test-score">8.0</span></div>
+            </div>
+            <p class="fb-txt" style="margin-top:12px">En ecoute sur du jazz et de la musique classique de chambre, le Sampan M11 revele une cohesion remarquable entre les voies. La voix humaine est restituee avec un naturel confondant. Les graves sont ronds et controles, jamais bouffis. Les aigus, bien que non etincelants, possedent un veloute tres plaisant sur le long terme.</p>
+          </div>
+
+          <div><div class="fb-lbl">Cablage conseille</div>
+            <div class="info-bloc">
+              <p>Cable de section <strong>2.5 mm²</strong> minimum. Privilegier un cable cuivre OFC sans oxygene, type Van Damme ou QED Original. Longueur max recommandee : <strong>4 m</strong> par canal. Connexion banane ou a nu, eviter les fiches de qualite inferieure qui degradent le contact.</p>
+            </div>
+          </div>
+
+          <div><div class="fb-lbl">Placement ideal</div>
+            <div class="info-bloc">
+              <p>Eloigner du mur arriere d'au moins <strong>40 cm</strong>. Pas de toe-in necessaire, l'enceinte projette naturellement. Poser sur pieds rigides ou directement au sol avec embouts pointes. Eviter les coins de piece qui gonflent artificiellement le grave.</p>
+            </div>
+          </div>
+
+          <div class="fb-full"><div class="fb-lbl">Points de vigilance a l'achat</div>
+            <div class="vigil">
+              <p>Verifier l'etat du haut-parleur de grave : les suspensions en mousse sont souvent degradees apres 40 ans. Tester le tweeter a voix basse — les domes alu de l'epoque sont fragiles. Verifier l'absence de craquements dans le filtre passif. Les grilles tissu sont souvent tachees mais remplacables.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 CABASSE GALION 4 -->
+  <div class="enc" data-id="enc2" onclick="tog(this)">
+    <div class="enc-row">
+      <div class="enc-idx">02</div>
+      <div class="enc-main-wrap">
+        <div class="enc-thumb"><img src="data:image/jpeg;base64,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" alt="Cabasse Galion 4"></div>
+        <div class="enc-txt">
+          <div class="enc-brand">Cabasse</div>
+          <div class="enc-name">Galion 4</div>
+          <div class="enc-desc">Scene large et aeree, reference absolue de la marque bretonne.</div>
+        </div>
+      </div>
+      <div class="enc-right">
+        <div class="enc-price">1 €</div>
+        <div class="enc-punit">la fiche</div>
+        <a href="#" onclick="acheter(event, 'enc2')" class="buy-btn">Acheter</a>
+        <div class="enc-arr">▼</div>
+      </div>
+    </div>
+    <div class="fiche">
+      <div class="fiche-inner">
+        <div class="fiche-grid">
+          <div class="fb-full"><div class="fb-lbl">Histoire &amp; Contexte</div>
+          <p class="fb-txt">Le Galion 4 represente l'apogee de la lignee Galion de Cabasse, produit tout au long des annees 80. Cette biblioteheque 3 voies incarne la philosophie sonore bretonne : neutralite, ouverture et une scene sonore d'une largeur exceptionnelle pour son format. Elle reste aujourd'hui une reference absolue de l'occasion haute-fidelite francaise.</p></div>
+
+          <div><div class="fb-lbl">Caracteristiques</div>
+            <div class="sr"><span class="sk">Type</span><span class="sv">Bibliotheque 3 voies</span></div>
+            <div class="sr"><span class="sk">Sensibilite</span><span class="sv">89 dB / 1W / 1m</span></div>
+            <div class="sr"><span class="sk">Impedance</span><span class="sv">8 Ohms</span></div>
+            <div class="sr"><span class="sk">Frequences</span><span class="sv">50 Hz – 22 kHz</span></div>
+            <div class="sr"><span class="sk">Puissance</span><span class="sv">20 – 120 W</span></div>
+          </div>
+
+          <div><div class="fb-lbl">Amplification</div>
+            <p class="fb-conseil">Tres tolerante, elle fonctionne avec 20 W en triode comme avec un integre 100 W. Les amplis tubes lui vont particulierement bien. Marantz PM series, Luxman, ou ampli tube EL34 sont des associations remarquables.</p></div>
+
+          <div class="fb-full"><div class="fb-lbl">Tests &amp; Impressions d'ecoute</div>
+            <div class="test-bars">
+              <div class="test-row"><span class="test-lbl">Graves</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:75%"></div></div><span class="test-score">7.5</span></div>
+              <div class="test-row"><span class="test-lbl">Mediums</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:92%"></div></div><span class="test-score">9.2</span></div>
+              <div class="test-row"><span class="test-lbl">Aigus</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:88%"></div></div><span class="test-score">8.8</span></div>
+              <div class="test-row"><span class="test-lbl">Scene sonore</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:95%"></div></div><span class="test-score">9.5</span></div>
+              <div class="test-row"><span class="test-lbl">Dynamique</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:83%"></div></div><span class="test-score">8.3</span></div>
+            </div>
+            <p class="fb-txt" style="margin-top:12px">La scene sonore du Galion 4 est sa caracteristique la plus impressionnante : large, profonde, avec une localisation tres precise des instruments. Les mediums sont d'une fluidite remarquable, ideal pour les voix et les instruments acoustiques. Le grave est propre mais limité en extension — associer un subwoofer pour la grande orchestration.</p>
+          </div>
+
+          <div><div class="fb-lbl">Cablage conseille</div>
+            <div class="info-bloc">
+              <p>Section <strong>2 mm²</strong> suffisante compte tenu de la sensibilite moderee. Cable cuivre pur type Chord Carnival ou Mogami. Longueur ideale : <strong>2 a 3 m</strong> maximum. Connexion a cosses fourche de qualite. Eviter les cables plats bon marche.</p>
+            </div>
+          </div>
+
+          <div><div class="fb-lbl">Placement ideal</div>
+            <div class="info-bloc">
+              <p>Sur pieds solides a <strong>60–70 cm</strong> de hauteur. Eloigner du mur de <strong>30 a 50 cm</strong>. Toe-in modere de 10 a 15° pour renforcer la coherence centrale. La scene sonore se construit entre les deux enceintes — espacement de <strong>2 a 2.5 m</strong> conseille.</p>
+            </div>
+          </div>
+
+          <div class="fb-full"><div class="fb-lbl">Points de vigilance a l'achat</div>
+            <div class="vigil">
+              <p>Le tweeter a dome soie peut etre perce — tester imperativement en aigus. Les basses frequences revelent vite une suspension fatiguee. Les enceintes en coffret bois peuvent presenter des decollement — inspecter les joints. Verifier le condensateur du filtre (vieillissement apres 30 ans).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 INFINITY KAPPA 9 -->
+  <div class="enc" data-id="enc3" onclick="tog(this)">
+    <div class="enc-row">
+      <div class="enc-idx">03</div>
+      <div class="enc-main-wrap">
+        <div class="enc-thumb"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAzAEADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD7LooooA8j+JXx30PwJqtpp+paFq11JdlxEbYxnlX24+Zh3xU/gX426N4p+ID+CR4f1rS9VjRmkW8EQVdoBxlXOeCK+ev2xEz4k00sUAiv7qLL9ACyNz7VL8Itmm/taWaRXel3KXMJy+nuWhy0IOATznjmuajW56PM3rr+DsdVaioVuRLTT8Vc9x+JXx90fwV47m8Hv4c1bUr+ONJN1u8SoQy7v4mB4FWfhF8b9O+I01wlhoF7ZLBNHCWnmQ5L+y185/HmKDVP2odciuNQ02xSC0z5l8SIyUt87eP4jnitr9jFtlxtUj9/qiDjvtjzSr1vZ0uZPW6/FlYegqlVxa0Sb+5XPs2iiiuo4woPSiigD4p/bNVk1xsIG8rVCwB5zviBx+OK4r4JazPN+0F4SvZbBLESXSQ7EiCKflK9BxXof7aL/Z/El3JkoBPaybgMld0LJuH0xXlPw9vtNsviJ4JNndLNM2pWrOscTJHFhsHqOWPHI9a4MN/AqR7OX53PRxP8ek+6j+VjS+PmpXEH7QnjG5gsFvQJzAVaMOF+RR37/rXdfsaZOsaXCRgvqNw5BH92H/61eefGG9065+Kfjj7TOY7iHWbnYjxlo3BbG4kdGXHH4V6T+xtKbrxvp0mSw23s+SOTwFyffmjEq9Kmv70f8x4N2q1X2jL/ACPswUUUV3nmhRRQeaAPkz9t21EV694wG02trIcjI+WZl/rXz54eurS11jwtMuo21zcNf27yQxhi0DLMASzHj5hzx69BivtT9o74V638R7KKDRbzT4GNv5Ehu2dQvzhgw2qc9+OK898BfsgaXpmoWeo+JvFlzfyW8ySm2srcQxsVIOC7EsRx2wa5qVJxVRPq3+KR1Vqqk6cl0S/Bs+e/HV5Z3XjDxddHUIIbldXuStu+VMhaVv3gbphR2+nFe0/sP24k8UmcDCRaVO68f351x+lb3xP/AGSLDW9Zv9a8K+J5NOuLudpzaXsHmwqzHJCuuGUZ9Q1dh+zV8JPEXw8uLi41+6sWP2NbWNLSZnD/AD7mZsqPQY+pp1Kbfs12f6DpVYr2j7r9Ue40UUV0HIFFFFABRRRQAUUUUAMMUZ6g/wDfRoWNFOVB49zRRQB//9k=" alt="Infinity Kappa 9"></div>
+        <div class="enc-txt">
+          <div class="enc-brand">Infinity <span class="enc-badge badge-culte">Culte</span></div>
+          <div class="enc-name">Kappa 9</div>
+          <div class="enc-desc">Monument americain aux rubans EMIT. Dynamique et resolution hors du commun.</div>
+        </div>
+      </div>
+      <div class="enc-right">
+        <div class="enc-price">1 €</div>
+        <div class="enc-punit">la fiche</div>
+        <a href="#" onclick="acheter(event, 'enc3')" class="buy-btn">Acheter</a>
+        <div class="enc-arr">▼</div>
+      </div>
+    </div>
+    <div class="fiche">
+      <div class="fiche-inner">
+        <div class="fiche-grid">
+          <div class="fb-full"><div class="fb-lbl">Histoire &amp; Contexte</div>
+          <p class="fb-txt">Produite entre 1983 et 1989, la Kappa 9 est consideree comme l'un des sommets de l'ere Infinity. Elle utilise les fameux emetteurs EMIT (Electro-Magnetic Induction Tweeter) en ruban pour les hautes frequences, et des membranes en graphite pour les mediums-graves. Son impedance nominale de 4 ohms peut descendre a 1 ohm dans les graves, ce qui en fait un vrai defi pour l'amplification.</p></div>
+
+          <div><div class="fb-lbl">Caracteristiques</div>
+            <div class="sr"><span class="sk">Type</span><span class="sv">Colonne 4 voies</span></div>
+            <div class="sr"><span class="sk">Sensibilite</span><span class="sv">88 dB / 1W / 1m</span></div>
+            <div class="sr"><span class="sk">Impedance</span><span class="sv">4 Ohms (min 1 Ohm)</span></div>
+            <div class="sr"><span class="sk">Frequences</span><span class="sv">20 Hz – 45 kHz</span></div>
+            <div class="sr"><span class="sk">Puissance</span><span class="sv">50 – 400 W</span></div>
+            <div class="sr"><span class="sk">Tweeter</span><span class="sv">Ruban EMIT</span></div>
+          </div>
+
+          <div><div class="fb-lbl">Amplification</div>
+            <p class="fb-conseil">CRITIQUE : l'amplificateur doit etre stable a 1 Ohm. Krell, Bryston, Parasound Halo sont des choix eprouves. Minimum 200 W sous 4 Ohms. Un ampli sous-dimensionne etiage et distord — risque d'endommager les EMIT.</p></div>
+
+          <div class="fb-full"><div class="fb-lbl">Tests &amp; Impressions d'ecoute</div>
+            <div class="test-bars">
+              <div class="test-row"><span class="test-lbl">Graves</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:93%"></div></div><span class="test-score">9.3</span></div>
+              <div class="test-row"><span class="test-lbl">Mediums</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:88%"></div></div><span class="test-score">8.8</span></div>
+              <div class="test-row"><span class="test-lbl">Aigus</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:97%"></div></div><span class="test-score">9.7</span></div>
+              <div class="test-row"><span class="test-lbl">Scene sonore</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:91%"></div></div><span class="test-score">9.1</span></div>
+              <div class="test-row"><span class="test-lbl">Dynamique</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:96%"></div></div><span class="test-score">9.6</span></div>
+            </div>
+            <p class="fb-txt" style="margin-top:12px">Les rubans EMIT sont d'une legerete et d'une resolution spectaculaires — les cymbales, les cordes en pizzicato, les souffles de flute sont rendus avec une vraisemblance rarement egale. Le grave est imposant et profond. Seul bemol : un medium parfois un peu en retrait sur les voix masculines. Un classique absolu du rock et du grand orchestre.</p>
+          </div>
+
+          <div><div class="fb-lbl">Cablage conseille</div>
+            <div class="info-bloc">
+              <p>Cable de <strong>4 mm²</strong> imperatif vu la charge difficile. Privilegier des cables de faible resistance et inductance : Kimber 8TC, Audioquest Type 8 ou equivalents. Longueur max : <strong>3 m</strong>. Connexion par fiches banane de qualite — les bornes acceptent le 4 mm. Biwiring vivement recommande.</p>
+            </div>
+          </div>
+
+          <div><div class="fb-lbl">Placement ideal</div>
+            <div class="info-bloc">
+              <p>Eloigner du mur arriere d'au moins <strong>80 cm</strong>. Toe-in important de <strong>20 a 30°</strong> pour que les EMIT pointent vers l'auditeur. Hauteur d'ecoute : les rubans sont a mi-hauteur de l'enceinte, adapter la hauteur du fauteuil. Distance d'ecoute optimale : <strong>3 a 4 m</strong>.</p>
+            </div>
+          </div>
+
+          <div class="fb-full"><div class="fb-lbl">Points de vigilance a l'achat</div>
+            <div class="vigil">
+              <p>Les rubans EMIT sont fragiles et difficiles a remplacer — tester toutes les frequences aigues attentivement. Les membranes graphite peuvent se decoller. Verifier que l'amplificateur vendeur etait stable a basse impedance, sinon risque de bobines grillee. Les potentiometres de niveau hautes frequences s'oxydent — craquements a surveiller.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 CABASSE CLIPPER M2 -->
+  <div class="enc" data-id="enc4" onclick="tog(this)">
+    <div class="enc-row">
+      <div class="enc-idx">04</div>
+      <div class="enc-main-wrap">
+        <div class="enc-thumb"><img src="data:image/jpeg;base64,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" alt="Cabasse Clipper M2"></div>
+        <div class="enc-txt">
+          <div class="enc-brand">Cabasse</div>
+          <div class="enc-name">Clipper M2</div>
+          <div class="enc-desc">Compacte et musicale. Un equilibre sonore qui depasse largement sa taille.</div>
+        </div>
+      </div>
+      <div class="enc-right">
+        <div class="enc-price">1 €</div>
+        <div class="enc-punit">la fiche</div>
+        <a href="#" onclick="acheter(event, 'enc4')" class="buy-btn">Acheter</a>
+        <div class="enc-arr">▼</div>
+      </div>
+    </div>
+    <div class="fiche">
+      <div class="fiche-inner">
+        <div class="fiche-grid">
+          <div class="fb-full"><div class="fb-lbl">Histoire &amp; Contexte</div>
+          <p class="fb-txt">La Clipper M2 est une bibliotheque compacte Cabasse des annees 80–90, appréciée pour sa polyvalence et sa facilite d'integration. Elle represente bien l'ecole Cabasse : equilibre tonal soigne, coherence de phase et une musicalite naturelle qui rend la fatigue d'ecoute quasi inexistante meme sur de longues sessions.</p></div>
+
+          <div><div class="fb-lbl">Caracteristiques</div>
+            <div class="sr"><span class="sk">Type</span><span class="sv">Bibliotheque 2 voies</span></div>
+            <div class="sr"><span class="sk">Sensibilite</span><span class="sv">88 dB / 1W / 1m</span></div>
+            <div class="sr"><span class="sk">Impedance</span><span class="sv">8 Ohms</span></div>
+            <div class="sr"><span class="sk">Frequences</span><span class="sv">65 Hz – 20 kHz</span></div>
+            <div class="sr"><span class="sk">Puissance</span><span class="sv">15 – 80 W</span></div>
+          </div>
+
+          <div><div class="fb-lbl">Amplification</div>
+            <p class="fb-conseil">Un ampli de 30 a 80 W sous 8 Ohms suffit amplement. Parfaite avec un integre de qualite type Marantz PM5005, Rotel RA-10 ou ampli tube modeste. Sa sensibilite moderee demande un ampli sain plutot que puissant.</p></div>
+
+          <div class="fb-full"><div class="fb-lbl">Tests &amp; Impressions d'ecoute</div>
+            <div class="test-bars">
+              <div class="test-row"><span class="test-lbl">Graves</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:68%"></div></div><span class="test-score">6.8</span></div>
+              <div class="test-row"><span class="test-lbl">Mediums</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:88%"></div></div><span class="test-score">8.8</span></div>
+              <div class="test-row"><span class="test-lbl">Aigus</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:84%"></div></div><span class="test-score">8.4</span></div>
+              <div class="test-row"><span class="test-lbl">Scene sonore</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:87%"></div></div><span class="test-score">8.7</span></div>
+              <div class="test-row"><span class="test-lbl">Dynamique</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:76%"></div></div><span class="test-score">7.6</span></div>
+            </div>
+            <p class="fb-txt" style="margin-top:12px">Pour sa taille, la Clipper M2 surprend par sa scene sonore bien construite et ses mediums equilibres. Ideale pour les petites et moyennes pieces. Elle restitue la voix avec beaucoup de naturel. Le grave est honnete mais sans profondeur exageree — prevoir un subwoofer si l'on ecoute du jazz basse ou de l'electroacoustique.</p>
+          </div>
+
+          <div><div class="fb-lbl">Cablage conseille</div>
+            <div class="info-bloc">
+              <p>Section <strong>1.5 a 2 mm²</strong> suffisante. Cable cuivre pur souple, type QED Profile ou Chord Carnival Silverscreen. Longueur max : <strong>3 m</strong>. Connexion a nu ou cosses banane basiques. Inutile de surinvestir sur le cable pour ce modele.</p>
+            </div>
+          </div>
+
+          <div><div class="fb-lbl">Placement ideal</div>
+            <div class="info-bloc">
+              <p>Sur pieds a <strong>60 cm</strong> de hauteur, eloignees de <strong>20 a 30 cm</strong> du mur arriere. Toe-in leger de 5 a 10°. Eviter les etageres encastrees qui etouffent le grave. Espacement entre enceintes : <strong>1.5 a 2 m</strong> pour une image correcte.</p>
+            </div>
+          </div>
+
+          <div class="fb-full"><div class="fb-lbl">Points de vigilance a l'achat</div>
+            <div class="vigil">
+              <p>Controler l'integrite du dome tweeter (souvent malmene). Verifier les suspensions du woofer — le caoutchouc vieillit mieux que la mousse mais peut se craqueler. Tester le filtre passif : les condensateurs electrolytiques ont une duree de vie limitee a 30 ans.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 SIARE CLUB 9 -->
+  <div class="enc" data-id="enc5" onclick="tog(this)">
+    <div class="enc-row">
+      <div class="enc-idx">05</div>
+      <div class="enc-main-wrap">
+        <div class="enc-thumb"><img src="data:image/jpeg;base64,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" alt="Siare Club 9"></div>
+        <div class="enc-txt">
+          <div class="enc-brand">Siare</div>
+          <div class="enc-name">Club 9</div>
+          <div class="enc-desc">Artisanat francais confidentiel, equilibre naturel et finition boisee des grands salons.</div>
+        </div>
+      </div>
+      <div class="enc-right">
+        <div class="enc-price">1 €</div>
+        <div class="enc-punit">la fiche</div>
+        <a href="#" onclick="acheter(event, 'enc5')" class="buy-btn">Acheter</a>
+        <div class="enc-arr">▼</div>
+      </div>
+    </div>
+    <div class="fiche">
+      <div class="fiche-inner">
+        <div class="fiche-grid">
+          <div class="fb-full"><div class="fb-lbl">Histoire &amp; Contexte</div>
+          <p class="fb-txt">Siare est une marque francaise confidentielle des annees 70-80, aujourd'hui quasiment oubliee, qui produisait des enceintes de salon haut de gamme dans la plus pure tradition artisanale. Le Club 9 est un modele colonne aux finitions boisees soignees, temoignant d'une epoque ou le meuble et l'acoustique se rejoignaient. Sa rarete sur le marche en fait un objet de collectionneur autant qu'un instrument musical.</p></div>
+
+          <div><div class="fb-lbl">Caracteristiques</div>
+            <div class="sr"><span class="sk">Type</span><span class="sv">Colonne 3 voies</span></div>
+            <div class="sr"><span class="sk">Sensibilite</span><span class="sv">90 dB / 1W / 1m</span></div>
+            <div class="sr"><span class="sk">Impedance</span><span class="sv">8 Ohms</span></div>
+            <div class="sr"><span class="sk">Frequences</span><span class="sv">42 Hz – 20 kHz</span></div>
+            <div class="sr"><span class="sk">Puissance</span><span class="sv">25 – 100 W</span></div>
+          </div>
+
+          <div><div class="fb-lbl">Amplification</div>
+            <p class="fb-conseil">Temperament doux et naturel qui se marie bien avec les amplis a tubes (EL34, 6L6) ou les integres vintage japonais Sansui, Pioneer. Eviter les amplis tres analytiques ou tres controles qui eteint sa musicalite.</p></div>
+
+          <div class="fb-full"><div class="fb-lbl">Tests &amp; Impressions d'ecoute</div>
+            <div class="test-bars">
+              <div class="test-row"><span class="test-lbl">Graves</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:79%"></div></div><span class="test-score">7.9</span></div>
+              <div class="test-row"><span class="test-lbl">Mediums</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:91%"></div></div><span class="test-score">9.1</span></div>
+              <div class="test-row"><span class="test-lbl">Aigus</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:80%"></div></div><span class="test-score">8.0</span></div>
+              <div class="test-row"><span class="test-lbl">Scene sonore</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:86%"></div></div><span class="test-score">8.6</span></div>
+              <div class="test-row"><span class="test-lbl">Dynamique</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:77%"></div></div><span class="test-score">7.7</span></div>
+            </div>
+            <p class="fb-txt" style="margin-top:12px">Ecoute tres organique et charnue, particulierement convaincante sur les voix et les instruments acoustiques. Le Club 9 n'essaie pas de tout analyser — il laisse la musique couler naturellement. Un rien de douceur dans les aigus apporte un confort d'ecoute remarquable sur la duree. Ideal pour le jazz vocal, la variete et la musique classique de chambre.</p>
+          </div>
+
+          <div><div class="fb-lbl">Cablage conseille</div>
+            <div class="info-bloc">
+              <p>Section <strong>2.5 mm²</strong>, cuivre pur. Un cable "chaud" et rond comme le Van Damme HiF ou le Belden 5000UP est ideal pour prolonger la signature musicale de l'enceinte. Longueur max : <strong>4 m</strong>. Connexion cosses a fiche banane ou a vis — les bornes d'epoque acceptent les deux.</p>
+            </div>
+          </div>
+
+          <div><div class="fb-lbl">Placement ideal</div>
+            <div class="info-bloc">
+              <p>Enceinte pensee pour le salon, elle aime les grandes pieces. Eloigner du mur de <strong>50 cm minimum</strong>. Pas ou peu de toe-in. Pose au sol recommandee, sans pieds additionnels. Distance d'ecoute optimale : <strong>3 m</strong>. Elle se presente bien dans les angles arrondis de pieces rectangulaires.</p>
+            </div>
+          </div>
+
+          <div class="fb-full"><div class="fb-lbl">Points de vigilance a l'achat</div>
+            <div class="vigil">
+              <p>La rarete de la marque rend les pieces de rechange introuvables — verifier chaque transducteur minutieusement. Les cabinets bois massif peuvent presenter des fissures dues au sechage. Tester absolument en longue session : les defauts de filtre se revelent dans la duree. Documentation technique quasi inexistante.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 SIARE GALAXY 200 -->
+  <div class="enc" data-id="enc6" onclick="tog(this)">
+    <div class="enc-row">
+      <div class="enc-idx">06</div>
+      <div class="enc-main-wrap">
+        <div class="enc-thumb"><img src="data:image/jpeg;base64,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" alt="Siare Galaxy 200"></div>
+        <div class="enc-txt">
+          <div class="enc-brand">Siare</div>
+          <div class="enc-name">Galaxy 200</div>
+          <div class="enc-desc">Restitution spatiale genereuse, alternative francaise meconnue et precieuse.</div>
+        </div>
+      </div>
+      <div class="enc-right">
+        <div class="enc-price">1 €</div>
+        <div class="enc-punit">la fiche</div>
+        <a href="#" onclick="acheter(event, 'enc6')" class="buy-btn">Acheter</a>
+        <div class="enc-arr">▼</div>
+      </div>
+    </div>
+    <div class="fiche">
+      <div class="fiche-inner">
+        <div class="fiche-grid">
+          <div class="fb-full"><div class="fb-lbl">Histoire &amp; Contexte</div>
+          <p class="fb-txt">La Galaxy 200 represente le haut de gamme Siare, une marque dont la production limitee et la diffusion confidentielle expliquent l'oubli dans lequel elle est tombee. Pourtant, cette colonne developpee dans les annees 80 rivalise avec les meilleures productions europeennes de l'epoque. Elle est particulierement recherchee pour sa restitution spatiale ample et sa capacite a "disparaitre" acoustiquement dans une piece bien preparee.</p></div>
+
+          <div><div class="fb-lbl">Caracteristiques</div>
+            <div class="sr"><span class="sk">Type</span><span class="sv">Colonne 3 voies bass-reflex</span></div>
+            <div class="sr"><span class="sk">Sensibilite</span><span class="sv">91 dB / 1W / 1m</span></div>
+            <div class="sr"><span class="sk">Impedance</span><span class="sv">8 Ohms</span></div>
+            <div class="sr"><span class="sk">Frequences</span><span class="sv">38 Hz – 22 kHz</span></div>
+            <div class="sr"><span class="sk">Puissance</span><span class="sv">30 – 150 W</span></div>
+          </div>
+
+          <div><div class="fb-lbl">Amplification</div>
+            <p class="fb-conseil">Sa sensibilite de 91 dB en fait une enceinte tres facile a driver. Un integre de 40 W suffit largement. Les amplis a tubes de puissance moderee (Audiolab, Creek, amplis EL34) sont des associations tres recommandees pour maximiser la spatialisation.</p></div>
+
+          <div class="fb-full"><div class="fb-lbl">Tests &amp; Impressions d'ecoute</div>
+            <div class="test-bars">
+              <div class="test-row"><span class="test-lbl">Graves</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:84%"></div></div><span class="test-score">8.4</span></div>
+              <div class="test-row"><span class="test-lbl">Mediums</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:87%"></div></div><span class="test-score">8.7</span></div>
+              <div class="test-row"><span class="test-lbl">Aigus</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:83%"></div></div><span class="test-score">8.3</span></div>
+              <div class="test-row"><span class="test-lbl">Scene sonore</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:94%"></div></div><span class="test-score">9.4</span></div>
+              <div class="test-row"><span class="test-lbl">Dynamique</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:85%"></div></div><span class="test-score">8.5</span></div>
+            </div>
+            <p class="fb-txt" style="margin-top:12px">La Galaxy 200 donne la sensation que la musique emplit la piece entiere. La localisation des instruments est floue au bon sens du terme : elle cree une ambiance, une enveloppe sonore plutot qu'une image chirurgicale. Ideal pour les grands orchestres, les enregistrements live et le rock progressif. Le grave est profond et bien articule grace au bass-reflex bien accorde.</p>
+          </div>
+
+          <div><div class="fb-lbl">Cablage conseille</div>
+            <div class="info-bloc">
+              <p>Section <strong>2.5 mm²</strong>. Un cable argente ou plaque argent (type Nordost Blue Heaven occasion) peut sublimer sa spatialisation naturelle. Longueur max : <strong>5 m</strong> grace a sa haute sensibilite. Biwiring possible si les bornes le permettent — a verifier sur l'exemplaire.</p>
+            </div>
+          </div>
+
+          <div><div class="fb-lbl">Placement ideal</div>
+            <div class="info-bloc">
+              <p>Cette enceinte demande de l'espace. Eloigner du mur arriere d'au moins <strong>60 a 80 cm</strong>. Espacement entre enceintes : <strong>2.5 a 3 m</strong>. Toe-in nul ou tres leger — elle diffuse naturellement. La pice ideale est de taille moyenne a grande avec un peu de diffusion acoustique aux murs lateraux.</p>
+            </div>
+          </div>
+
+          <div class="fb-full"><div class="fb-lbl">Points de vigilance a l'achat</div>
+            <div class="vigil">
+              <p>Comme pour le Club 9, les pieces de rechange sont introuvables. Verifier le port bass-reflex (eventuel bourrage intempestif). Tester la linearite sur des sinusoides balayees — les colorations de filtre vieilli sont courantes. Les grilles metalliques sont souvent oxydees mais restaurables.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 JBL 4350 -->
+  <div class="enc" data-id="enc7" onclick="tog(this)">
+    <div class="enc-row">
+      <div class="enc-idx">07</div>
+      <div class="enc-main-wrap">
+        <div class="enc-thumb"><img src="data:image/jpeg;base64,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" alt="JBL 4350"></div>
+        <div class="enc-txt">
+          <div class="enc-brand">JBL <span class="enc-badge badge-leg">Legendaire</span></div>
+          <div class="enc-name">4350</div>
+          <div class="enc-desc">Le Saint Graal des studios. Presence physique et musicale sans equivalent.</div>
+        </div>
+      </div>
+      <div class="enc-right">
+        <div class="enc-price">1 €</div>
+        <div class="enc-punit">la fiche</div>
+        <a href="#" onclick="acheter(event, 'enc7')" class="buy-btn">Acheter</a>
+        <div class="enc-arr">▼</div>
+      </div>
+    </div>
+    <div class="fiche">
+      <div class="fiche-inner">
+        <div class="fiche-grid">
+          <div class="fb-full"><div class="fb-lbl">Histoire &amp; Contexte</div>
+          <p class="fb-txt">La JBL 4350 est une enceinte de monitoring professionnel produite a partir de 1973, utilisee dans les plus grands studios d'enregistrement au monde — de Los Angeles a Tokyo. Elle embarque le legendaire woofer 2231A de 38 cm, un midrange a pavillon 2420 et le tweeter 2405. Son poids de 120 kg par enceinte et sa presence physique ecrasante en font une experience d'ecoute unique, entre l'intimite du studio et l'aisance du concert live.</p></div>
+
+          <div><div class="fb-lbl">Caracteristiques</div>
+            <div class="sr"><span class="sk">Type</span><span class="sv">Studio monitor 4 voies</span></div>
+            <div class="sr"><span class="sk">Sensibilite</span><span class="sv">98 dB / 1W / 1m</span></div>
+            <div class="sr"><span class="sk">Impedance</span><span class="sv">8 Ohms</span></div>
+            <div class="sr"><span class="sk">Frequences</span><span class="sv">25 Hz – 20 kHz</span></div>
+            <div class="sr"><span class="sk">Puissance</span><span class="sv">100 – 1200 W</span></div>
+            <div class="sr"><span class="sk">Woofer</span><span class="sv">38 cm JBL 2231A</span></div>
+          </div>
+
+          <div><div class="fb-lbl">Amplification</div>
+            <p class="fb-conseil">Sa sensibilite de 98 dB signifie que 20 W produisent deja un niveau considerable. Amplification biamplifee recommandee : ampli de grave puissant (Crown, QSC) + ampli de qualite pour les mediums-aigus. Un ampli tube de 30 W en haute frequence fonctionne divinement.</p></div>
+
+          <div class="fb-full"><div class="fb-lbl">Tests &amp; Impressions d'ecoute</div>
+            <div class="test-bars">
+              <div class="test-row"><span class="test-lbl">Graves</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:99%"></div></div><span class="test-score">9.9</span></div>
+              <div class="test-row"><span class="test-lbl">Mediums</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:92%"></div></div><span class="test-score">9.2</span></div>
+              <div class="test-row"><span class="test-lbl">Aigus</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:89%"></div></div><span class="test-score">8.9</span></div>
+              <div class="test-row"><span class="test-lbl">Scene sonore</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:94%"></div></div><span class="test-score">9.4</span></div>
+              <div class="test-row"><span class="test-lbl">Dynamique</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:100%"></div></div><span class="test-score">10</span></div>
+            </div>
+            <p class="fb-txt" style="margin-top:12px">L'ecoute d'une JBL 4350 est une experience physique autant qu'intellectuelle. Le grave du 2231A descend a des frequences qu'on ressent dans le sternum. La dynamique est absolument sans limite — les fortissimos orchestraux passent sans la moindre compression. En studio, elle revele tout : les defauts d'enregistrement n'ont nulle part ou se cacher. Une legende vivante.</p>
+          </div>
+
+          <div><div class="fb-lbl">Cablage conseille</div>
+            <div class="info-bloc">
+              <p>Cable <strong>4 mm²</strong> minimum pour le grave (courants importants). Pour les mediums-aigus en biamplification, du <strong>2.5 mm²</strong> suffit. Kimber 8TC ou Mogami W3104 pour le grave. Connexion XLR ou banane de qualite professionnelle (Neutrik). Longueur max en biamp : <strong>5 m</strong>.</p>
+            </div>
+          </div>
+
+          <div><div class="fb-lbl">Placement ideal</div>
+            <div class="info-bloc">
+              <p>Necessite une grande piece — minimum <strong>25 m²</strong>. Poser directement au sol, sans pieds. Eloigner du mur de <strong>1 m minimum</strong>. Toe-in de <strong>15°</strong>. Distance d'ecoute : <strong>3 a 5 m</strong>. Les pavillons du midrange necessitent d'etre a hauteur d'oreille en position assise.</p>
+            </div>
+          </div>
+
+          <div class="fb-full"><div class="fb-lbl">Points de vigilance a l'achat</div>
+            <div class="vigil">
+              <p>Verifier l'etat de chaque transducteur individuellement — la revision complete d'une paire coute plusieurs milliers d'euros. Les diaphragmes des compressions 2420 sont fragiles. Controler l'alignement des pavillons. S'assurer que le crossover electronique actif (si present) fonctionne correctement. Le poids impose un plancher solide.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 08 JBL 4345 -->
+  <div class="enc" data-id="enc8" onclick="tog(this)">
+    <div class="enc-row">
+      <div class="enc-idx">08</div>
+      <div class="enc-main-wrap">
+        <div class="enc-thumb"><img src="data:image/jpeg;base64,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" alt="JBL 4345"></div>
+        <div class="enc-txt">
+          <div class="enc-brand">JBL</div>
+          <div class="enc-name">4345</div>
+          <div class="enc-desc">Quatre voies d'exception, veneree dans les studios de mastering du monde entier.</div>
+        </div>
+      </div>
+      <div class="enc-right">
+        <div class="enc-price">1 €</div>
+        <div class="enc-punit">la fiche</div>
+        <a href="#" onclick="acheter(event, 'enc8')" class="buy-btn">Acheter</a>
+        <div class="enc-arr">▼</div>
+      </div>
+    </div>
+    <div class="fiche">
+      <div class="fiche-inner">
+        <div class="fiche-grid">
+          <div class="fb-full"><div class="fb-lbl">Histoire &amp; Contexte</div>
+          <p class="fb-txt">Successeure de la 4350, la JBL 4345 est lancee en 1984 avec un filtrage ameliore et de nouveaux transducteurs. Elle est particulierement prisee des ingenieur du son japonais — le Japon en a absorbe une grande partie de la production — pour son articulation dans le grave profond et sa capacite a reproduire les niveaux de pression sonore necessaires au mastering. Aujourd'hui monument de la haute fidelite, elle est aussi bien chez l'audiophile exigeant qu'en studio.</p></div>
+
+          <div><div class="fb-lbl">Caracteristiques</div>
+            <div class="sr"><span class="sk">Type</span><span class="sv">Studio monitor 4 voies</span></div>
+            <div class="sr"><span class="sk">Sensibilite</span><span class="sv">97 dB / 1W / 1m</span></div>
+            <div class="sr"><span class="sk">Impedance</span><span class="sv">8 Ohms</span></div>
+            <div class="sr"><span class="sk">Frequences</span><span class="sv">28 Hz – 20 kHz</span></div>
+            <div class="sr"><span class="sk">Puissance</span><span class="sv">100 – 1000 W</span></div>
+            <div class="sr"><span class="sk">Woofer</span><span class="sv">38 cm JBL 2235H</span></div>
+          </div>
+
+          <div><div class="fb-lbl">Amplification</div>
+            <p class="fb-conseil">Biamplification fortement conseillee. Grave : ampli pro de 300 W minimum (Crown XLS, Lab Gruppen). Mediums-aigus : ampli hifi de qualite, 50 W suffisent. En passif, prevoir 200 W sous 8 Ohms, stable en courant. Mark Levinson, Bryston sont des associations historiques.</p></div>
+
+          <div class="fb-full"><div class="fb-lbl">Tests &amp; Impressions d'ecoute</div>
+            <div class="test-bars">
+              <div class="test-row"><span class="test-lbl">Graves</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:98%"></div></div><span class="test-score">9.8</span></div>
+              <div class="test-row"><span class="test-lbl">Mediums</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:94%"></div></div><span class="test-score">9.4</span></div>
+              <div class="test-row"><span class="test-lbl">Aigus</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:90%"></div></div><span class="test-score">9.0</span></div>
+              <div class="test-row"><span class="test-lbl">Scene sonore</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:93%"></div></div><span class="test-score">9.3</span></div>
+              <div class="test-row"><span class="test-lbl">Dynamique</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:99%"></div></div><span class="test-score">9.9</span></div>
+            </div>
+            <p class="fb-txt" style="margin-top:12px">Si la 4350 est une experience sensorielle brute, la 4345 est plus raffinee. La resolution dans les mediums est en net progres — les voix, les cuivres, les pizz de contrebasse sont d'un realisme troublant. Le grave du 2235H, bien que moins explosif que le 2231A, est plus articule et plus musical. Une reference absolue pour le mastering comme pour l'ecoute haute fidelite exigeante.</p>
+          </div>
+
+          <div><div class="fb-lbl">Cablage conseille</div>
+            <div class="info-bloc">
+              <p>Memes preconisations que la 4350 : <strong>4 mm²</strong> pour le grave en biamplification, <strong>2.5 mm²</strong> pour les mediums-aigus. En passif : <strong>4 mm²</strong> sur toute la longueur. Cable de qualite professionnelle — les courants en jeu le justifient pleinement. Neutrik ou WBT pour les connecteurs.</p>
+            </div>
+          </div>
+
+          <div><div class="fb-lbl">Placement ideal</div>
+            <div class="info-bloc">
+              <p>Piece de <strong>20 m² minimum</strong>. Au sol, eloignee du mur de <strong>80 cm a 1.2 m</strong>. Toe-in modere de <strong>10 a 20°</strong>. Position d'ecoute a <strong>3 a 4 m</strong>. La hauteur du pavilion midrange doit correspondre a la hauteur d'oreille en position assise — hauteur fixe, adapter le siege.</p>
+            </div>
+          </div>
+
+          <div class="fb-full"><div class="fb-lbl">Points de vigilance a l'achat</div>
+            <div class="vigil">
+              <p>Memes vigilances que la 4350. Specifiquement : le crossover passif 4345 utilise des inductances bobinees — verifier l'absence de court-circuit. Les diaphragmes 2441 se fissurent avec l'age. Demander l'historique d'utilisation : les exemplaires de studio peuvent avoir subi des niveaux sonores extremes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 09 JAMO CONCERT 11 -->
+  <div class="enc" data-id="enc9" onclick="tog(this)">
+    <div class="enc-row">
+      <div class="enc-idx">09</div>
+      <div class="enc-main-wrap">
+        <div class="enc-thumb"><img src="data:image/jpeg;base64,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" alt="Jamo Concert 11"></div>
+        <div class="enc-txt">
+          <div class="enc-brand">Jamo</div>
+          <div class="enc-name">Concert 11</div>
+          <div class="enc-desc">Elegance et neutralite scandinaves, tenue en puissance remarquable.</div>
+        </div>
+      </div>
+      <div class="enc-right">
+        <div class="enc-price">1 €</div>
+        <div class="enc-punit">la fiche</div>
+        <a href="#" onclick="acheter(event, 'enc9')" class="buy-btn">Acheter</a>
+        <div class="enc-arr">▼</div>
+      </div>
+    </div>
+    <div class="fiche">
+      <div class="fiche-inner">
+        <div class="fiche-grid">
+          <div class="fb-full"><div class="fb-lbl">Histoire &amp; Contexte</div>
+          <p class="fb-txt">La Jamo Concert 11 fait partie de la serie Concert lancee a la fin des annees 90, point culminant du savoir-faire danois de Jamo avant que la marque ne soit rachetee et orientee vers le grand public. Cette colonne 3 voies incarne l'esthetique scandinave : sobriete des formes, neutralite du rendu, rigueur de construction. Elle reste une reference dans les systemes hifi nordiques, appreciee pour son absence de colorations et sa linearite exemplaire.</p></div>
+
+          <div><div class="fb-lbl">Caracteristiques</div>
+            <div class="sr"><span class="sk">Type</span><span class="sv">Colonne 3 voies</span></div>
+            <div class="sr"><span class="sk">Sensibilite</span><span class="sv">90 dB / 1W / 1m</span></div>
+            <div class="sr"><span class="sk">Impedance</span><span class="sv">6 Ohms</span></div>
+            <div class="sr"><span class="sk">Frequences</span><span class="sv">35 Hz – 22 kHz</span></div>
+            <div class="sr"><span class="sk">Puissance</span><span class="sv">60 – 300 W</span></div>
+          </div>
+
+          <div><div class="fb-lbl">Amplification</div>
+            <p class="fb-conseil">Impedance de 6 Ohms — verifier que l'ampli gere cette charge. 80 W sous 6 Ohms sont un minimum pour en tirer le meilleur. Les amplis scandinaves (Rotel, Arcam, NAD) sont des partenaires naturels. Eviter les amplis trop chauds qui masquent sa neutralite.</p></div>
+
+          <div class="fb-full"><div class="fb-lbl">Tests &amp; Impressions d'ecoute</div>
+            <div class="test-bars">
+              <div class="test-row"><span class="test-lbl">Graves</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:87%"></div></div><span class="test-score">8.7</span></div>
+              <div class="test-row"><span class="test-lbl">Mediums</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:89%"></div></div><span class="test-score">8.9</span></div>
+              <div class="test-row"><span class="test-lbl">Aigus</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:91%"></div></div><span class="test-score">9.1</span></div>
+              <div class="test-row"><span class="test-lbl">Scene sonore</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:88%"></div></div><span class="test-score">8.8</span></div>
+              <div class="test-row"><span class="test-lbl">Dynamique</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:90%"></div></div><span class="test-score">9.0</span></div>
+            </div>
+            <p class="fb-txt" style="margin-top:12px">La Concert 11 est l'archetype de la neutralite scandinave : elle ne flatte pas, elle ne deçoit pas. Elle dit la verite de l'enregistrement avec une linearite remarquable. Son tweeter a dome soie est d'une finesse et d'une douceur exemplaires. La tenue en puissance est impressionnante — elle encaisse des niveaux tres eleves sans la moindre compression. Idéale pour tous les genres musicaux.</p>
+          </div>
+
+          <div><div class="fb-lbl">Cablage conseille</div>
+            <div class="info-bloc">
+              <p>Section <strong>2.5 a 4 mm²</strong> vu l'impedance de 6 Ohms. Un cable neutre et transparent comme le Chord Odyssey ou le Wireworld Oasis s'accorde parfaitement avec sa signature sonore. Longueur max : <strong>4 m</strong>. Biwiring possible et recommande pour ameliorer la separation des voies.</p>
+            </div>
+          </div>
+
+          <div><div class="fb-lbl">Placement ideal</div>
+            <div class="info-bloc">
+              <p>Eloigner du mur de <strong>40 a 60 cm</strong>. Toe-in de <strong>10 a 15°</strong> pour optimiser l'image centrale. Elle est peu sensible aux effets de pice — relativement tolerante. Position d'ecoute a <strong>2.5 a 3.5 m</strong>. Pieds spikes recommandes pour ameliorer l'articulation du grave.</p>
+            </div>
+          </div>
+
+          <div class="fb-full"><div class="fb-lbl">Points de vigilance a l'achat</div>
+            <div class="vigil">
+              <p>Le tweeter a dome soie peut etre enfonce par inadvertance — verifier visuellement et acoustiquement. Les woofers kevlar vieillissent bien mais tester la linearite du grave. Verifier l'etat du port bass-reflex. La finition laquer noire montre les rayures — inspecter le coffret soigneusement.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10 JMLAB ELECTRA 926 -->
+  <div class="enc" data-id="enc10" onclick="tog(this)">
+    <div class="enc-row">
+      <div class="enc-idx">10</div>
+      <div class="enc-main-wrap">
+        <div class="enc-thumb"><img src="data:image/jpeg;base64,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" alt="JMlab Electra 926"></div>
+        <div class="enc-txt">
+          <div class="enc-brand">JMlab / Focal</div>
+          <div class="enc-name">Electra 926</div>
+          <div class="enc-desc">Tweeter a dome inverse W, resolution et transparence a l'etat pur.</div>
+        </div>
+      </div>
+      <div class="enc-right">
+        <div class="enc-price">1 €</div>
+        <div class="enc-punit">la fiche</div>
+        <a href="#" onclick="acheter(event, 'enc10')" class="buy-btn">Acheter</a>
+        <div class="enc-arr">▼</div>
+      </div>
+    </div>
+    <div class="fiche">
+      <div class="fiche-inner">
+        <div class="fiche-grid">
+          <div class="fb-full"><div class="fb-lbl">Histoire &amp; Contexte</div>
+          <p class="fb-txt">L'Electra 926 marque une etape decisive dans l'histoire de JMlab, devenu depuis Focal. Lancee au debut des annees 2000, elle integre le celebre tweeter a dome inverse W en sandwich fibre de verre/mousse, offrant une transparence et une resolution exceptionnelles. Sa construction dans les ateliers de Saint-Etienne reflete un savoir-faire artisanal de tres haute qualite.</p></div>
+
+          <div><div class="fb-lbl">Caracteristiques</div>
+            <div class="sr"><span class="sk">Type</span><span class="sv">Colonne 3 voies</span></div>
+            <div class="sr"><span class="sk">Sensibilite</span><span class="sv">91 dB / 1W / 1m</span></div>
+            <div class="sr"><span class="sk">Impedance</span><span class="sv">8 Ohms</span></div>
+            <div class="sr"><span class="sk">Frequences</span><span class="sv">40 Hz – 40 kHz</span></div>
+            <div class="sr"><span class="sk">Puissance</span><span class="sv">60 – 250 W</span></div>
+            <div class="sr"><span class="sk">Tweeter</span><span class="sv">Dome inverse 25mm W</span></div>
+          </div>
+
+          <div><div class="fb-lbl">Amplification</div>
+            <p class="fb-conseil">Un amplificateur de 80 a 250 W sous 8 Ohms revelera tout son potentiel. Elle apprecie les appareils rapides et precis (Naim, Accuphase). Eviter les amplificateurs colores.</p></div>
+
+          <div class="fb-full"><div class="fb-lbl">Tests &amp; Impressions d'ecoute</div>
+            <div class="test-bars">
+              <div class="test-row"><span class="test-lbl">Graves</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:86%"></div></div><span class="test-score">8.6</span></div>
+              <div class="test-row"><span class="test-lbl">Mediums</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:93%"></div></div><span class="test-score">9.3</span></div>
+              <div class="test-row"><span class="test-lbl">Aigus</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:96%"></div></div><span class="test-score">9.6</span></div>
+              <div class="test-row"><span class="test-lbl">Scene sonore</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:90%"></div></div><span class="test-score">9.0</span></div>
+              <div class="test-row"><span class="test-lbl">Dynamique</span><div class="test-bar-bg"><div class="test-bar-fill" style="width:88%"></div></div><span class="test-score">8.8</span></div>
+            </div>
+            <p class="fb-txt" style="margin-top:12px">Le dome inverse W de la 926 est une revelation : les hautes frequences sont d'une legerete et d'une resolution rarement egale a ce prix. Le violon, le piano, les voix de soprano sont rendus avec une verite confondante. Les mediums profitent des membranes W sandwich pour une coherence remarquable avec le tweeter. Le grave est propre, tendu, jamais envahissant. Une enceinte pour les amateurs de detail et de finesse.</p>
+          </div>
+
+          <div><div class="fb-lbl">Cablage conseille</div>
+            <div class="info-bloc">
+              <p>Section <strong>2.5 mm²</strong>, cuivre pur ou argent. Un cable transparent et rapide type Nordost Red Dawn ou Audioquest Rocket 44 met en valeur la resolution du dome W. Longueur max : <strong>4 m</strong>. Biwiring recommande — les bornes doubles le permettent. Eviter les cables trop "chauds" qui voilent les aigus.</p>
+            </div>
+          </div>
+
+          <div><div class="fb-lbl">Placement ideal</div>
+            <div class="info-bloc">
+              <p>Eloigner du mur arriere de <strong>40 a 60 cm</strong>. Toe-in assez marque : <strong>15 a 25°</strong> pour que le dome inverse focalise vers l'auditeur. Distance d'ecoute : <strong>2.5 a 3.5 m</strong>. L'axe de tweeter doit etre a la hauteur des oreilles. Pieds spikes indispensables pour l'articulation du grave.</p>
+            </div>
+          </div>
+
+          <div class="fb-full"><div class="fb-lbl">Points de vigilance a l'achat</div>
+            <div class="vigil">
+              <p>Le tweeter a dome inverse W est fragile et couteux a remplacer — tester imperativement. Les membranes W peuvent se delaminer si l'enceinte a ete surchargee. Verifier l'absence de bruit de souffle du tweeter a tres faible volume. Les pieds d'origine sont souvent manquants — prevoir un budget pieds de qualite.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end list -->
+
+<!-- QUOTE -->
+<div class="qb">
+  <span class="qm">"</span>
+  <p class="qt">Le son analogique n'est pas une nostalgie — c'est une philosophie. Ces enceintes ne reproduisent pas la musique, elles la vivent.</p>
+  <div class="qs">— La Redaction Vintage Helder Sound</div>
+</div>
+
+<!-- FOOTER -->
+<div class="ftr">
+  <div class="ftr-logo">Vintage Helder Sound</div>
+  <div class="ftr-txt">Passion &nbsp;·&nbsp; Authenticite &nbsp;·&nbsp; Excellence Acoustique<br>&#169; 2025 Vintage Sound Newsletter</div>
+  <div class="ftr-links">
+    <a href="#">Se desabonner</a>
+    <a href="#">Archives</a>
+    <a href="#">Nous contacter</a>
+  </div>
+</div>
+
+</div>
+<script>
+// Système de gestion des achats avec localStorage
+const STORAGE_KEY = 'vintage_helder_sound_purchases';
+
+// Charger les achats depuis localStorage
+function loadPurchases() {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch(e) {
+    console.error('Erreur loadPurchases:', e);
+    return [];
+  }
+}
+
+// Sauvegarder les achats dans localStorage
+function savePurchases(purchases) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(purchases));
+  } catch(e) {
+    console.error('Erreur savePurchases:', e);
+  }
+}
+
+// Vérifier si une fiche a été achetée
+function isPurchased(encId) {
+  try {
+    const purchases = loadPurchases();
+    return purchases.includes(encId);
+  } catch(e) {
+    console.error('Erreur isPurchased:', e);
+    return false;
+  }
+}
+
+// Marquer une fiche comme achetée
+function markAsPurchased(encId) {
+  try {
+    const purchases = loadPurchases();
+    if (!purchases.includes(encId)) {
+      purchases.push(encId);
+      savePurchases(purchases);
+    }
+    console.log('Fiche achetée:', encId);
+  } catch(e) {
+    console.error('Erreur markAsPurchased:', e);
+  }
+}
+
+// Fonction pour ouvrir/fermer une fiche
+function tog(enc){
+  try {
+    const encId = enc.getAttribute('data-id');
+    console.log('Tentative ouverture fiche:', encId);
+    
+    // Vérifier si cette fiche a été achetée
+    if (!isPurchased(encId)) {
+      alert('⚠️ Accès restreint\n\nVeuillez d\'abord acheter cette fiche (1€) pour accéder aux informations détaillées.\n\nCliquez sur le bouton "Acheter" ci-dessous.');
+      return;
+    }
+    
+    var f = enc.querySelector('.fiche');
+    var o = f.classList.contains('open');
+    f.classList.toggle('open', !o);
+    enc.classList.toggle('open', !o);
+  } catch(e) {
+    console.error('Erreur tog:', e);
+    alert('Erreur lors de l\'ouverture de la fiche. Veuillez réessayer.');
+  }
+}
+
+// Fonction pour gérer l'achat - VERSION CORRIGÉE
+function acheter(event, encId) {
+  try {
+    console.log('Fonction acheter appelée pour:', encId);
+    
+    // Empêcher le comportement par défaut du lien
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    
+    // Marquer comme acheté
+    markAsPurchased(encId);
+    
+    // Afficher message de confirmation
+    alert('✅ Merci pour votre achat !\n\nVous pouvez maintenant consulter la fiche détaillée en cliquant sur l\'enceinte.\n\nVous allez être redirigé vers PayPal pour finaliser le paiement.');
+    
+    // Mettre à jour le bouton immédiatement
+    updateButton(encId);
+    
+    // Rediriger vers PayPal dans un nouvel onglet
+    window.open('https://paypal.me/roni91skx/1', '_blank');
+    
+    console.log('Achat terminé pour:', encId);
+    
+  } catch(e) {
+    console.error('Erreur dans acheter:', e);
+    alert('Une erreur est survenue. Veuillez réessayer.');
+  }
+}
+
+// Fonction pour mettre à jour le bouton
+function updateButton(encId) {
+  try {
+    const enc = document.querySelector('[data-id="' + encId + '"]');
+    if (enc) {
+      const buyBtn = enc.querySelector('a[onclick*="acheter"]');
+      if (buyBtn) {
+        buyBtn.style.background = '#28a745';
+        buyBtn.textContent = '✓ Acheté';
+      }
+    }
+  } catch(e) {
+    console.error('Erreur updateButton:', e);
+  }
+}
+
+// Au chargement de la page, mettre à jour l'interface
+window.addEventListener('DOMContentLoaded', function() {
+  try {
+    console.log('Page chargée - Initialisation...');
+    const purchases = loadPurchases();
+    console.log('Fiches achetées:', purchases);
+    
+    // Mettre à jour tous les boutons des fiches achetées
+    purchases.forEach(encId => {
+      updateButton(encId);
+    });
+    
+    console.log('Initialisation terminée');
+  } catch(e) {
+    console.error('Erreur initialisation:', e);
+  }
+});
+
+// Test au chargement
+console.log('Script chargé avec succès');
+</script>
+</body>
+</html>
